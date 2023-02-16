@@ -10,7 +10,9 @@
 </head>
 <body id="bodyajouter">
     <?php 
+    // commencer la session
     session_start();
+    //inclure la page de connexion et le menu
     require "menu.php";
     require "./cnx.php"; 
     ?>
@@ -35,6 +37,7 @@
     </form>
     </section>
     <?php
+    // si l'utilisateur connecté il peut ajouter un employee
     if ($_SESSION['logedin']==true){
         if (isset($_POST['ajouter'])) {
             $id = $_POST["id"];
@@ -58,6 +61,7 @@
         ?>
     <?php
     }else{
+        // si l'utilisateur non connecte il va redirecté vers la page Login
         header("Location:Login.php");
     }
     ?>
