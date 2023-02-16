@@ -1,14 +1,17 @@
 
 <?php 
+    // commencer la session
     session_start();
+    //inclure la page de connexion et le menu
     require "menu.php";
     require "cnx.php";
+    //vérifier que l'utilisateur connecté
     if ($_SESSION['logedin']==true){
     $id = $_GET['id'];
     $operation = $connexion->prepare("SELECT * FROM Emloyee WHERE id = $id");
     $operation->execute();
     $userss = $operation->fetchAll(PDO::FETCH_OBJ);
-                
+    //vérifier que le bouton modifier a bien été cliqué            
     if(isset($_POST['modifier'])){
         $newid = $_POST["id"];
         $nom = strtoupper($_POST["nom"]);
@@ -17,10 +20,11 @@
         $telephone = $_POST["telephone"];
         $address = strtoupper($_POST["address"]);
         try{
+        //requête de modification
         $operation = $connexion->prepare("UPDATE emloyee SET ID='$newid', nom = '$nom' , prenom = '$prenom' , salaire = '$salaire',tel='$telephone', address='$address' WHERE ID = $id;");
         $operation->execute();
         $user = $operation->fetchAll(PDO::FETCH_OBJ);
-        
+        //si la requête a été effectuée avec succès , on fait une redirection
         header("location: Home.php");
         } catch (PDOException $e) {
             echo $e->getMessage();
