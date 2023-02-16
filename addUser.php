@@ -1,5 +1,7 @@
 <?php 
+    // commencer la session
     session_start();
+    //inclure la page de connexion et le menu
     require "menu.php";
     require "./cnx.php"; 
     ?>
@@ -34,10 +36,12 @@
   <button type="submit" class="btn btn-primary" name="ajouter">Ajouter</button>
   <?php
     if ($_SESSION['logedin']==true){
+        //vérifier que le bouton ajouter a bien été cliqué
         if (isset($_POST['ajouter'])) {            
             $mdp = $_POST["password"];
             $email = strtoupper($_POST["email"]);
             try {
+                // requête de l'insertion
                 $operation = $connexion->prepare("INSERT INTO users(email,mdp,name) values('$email','$mdp')");
                 $operation->execute(); 
     ?>
