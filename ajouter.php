@@ -39,6 +39,7 @@
     <?php
     // si l'utilisateur connecté il peut ajouter un employee
     if ($_SESSION['logedin']==true){
+        //vérifier que le bouton ajouter a bien été cliqué
         if (isset($_POST['ajouter'])) {
             $id = $_POST["id"];
             $nom = strtoupper($_POST["nom"]);
