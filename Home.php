@@ -27,13 +27,17 @@ session_start();
                     <th>Supprimer</th>
                 </tr>
     <?php
-    if ($_SESSION['logedin']==true){            
+    if ($_SESSION['logedin']==true){   
+        // //inclure la page de connexion et le menu
         require "cnx.php";
-        require "menu.php";            
+        require "menu.php";
+        //requête pour afficher la liste des employés
         $operation = $connexion->prepare("SELECT * FROM emloyee");
         $operation->execute();
         $user = $operation->fetchAll(PDO::FETCH_OBJ);
+        
         if(count($user) == 0){
+            //s'il n'existe pas d'employé dans la base de donné , alors on affiche ce message :
             echo "Il n'y a pas encore d'employé ajouter !" ;
         }else {
         foreach($user as $row){ ?>
