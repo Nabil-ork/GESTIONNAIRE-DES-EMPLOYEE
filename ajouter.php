@@ -37,7 +37,7 @@
     </form>
     </section>
     <?php
-    // si l'utilisateur connecté il peut ajouter un employee
+    // si l'utilisateur connecté il peut ajouter un employeé
     if ($_SESSION['logedin']==true){
         //vérifier que le bouton ajouter a bien été cliqué
         if (isset($_POST['ajouter'])) {
